@@ -123,8 +123,13 @@ class GameBoard(GridLayout):
         self.game_ref.add_score(points)
         self.game_ref.increment_moves()
         
+        # Mark blocks for removal before animation
+        blocks_to_remove = list(self.selected_blocks)
+        for block in blocks_to_remove:
+            block.color_index = -1  # Mark as removed
+        
         # Remove blocks with animation
-        for block in self.selected_blocks:
+        for block in blocks_to_remove:
             anim = Animation(opacity=0, duration=0.3)
             anim.start(block)
         
@@ -135,10 +140,6 @@ class GameBoard(GridLayout):
     
     def apply_gravity(self):
         """Make blocks fall down to fill empty spaces."""
-        # Mark removed blocks
-        for block in self.selected_blocks:
-            if block.opacity == 0:
-                block.color_index = -1
         
         # Apply gravity column by column
         for col in range(self.COLS):
@@ -178,9 +179,6 @@ class GameBoard(GridLayout):
                 anim.start(new_block)
                 
                 row_idx -= 1
-        
-        # Clear selected blocks list
-        self.selected_blocks = []
         
         # Check if level is complete
         self.game_ref.check_level_complete()
