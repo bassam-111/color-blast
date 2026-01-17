@@ -1,0 +1,4 @@
+kivy==2.2.1
+kivy-garden==0.1.5
+pyjnius==1.5.4
+plyer==2.1.0
