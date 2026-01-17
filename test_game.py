@@ -67,7 +67,7 @@ def test_flood_fill_logic():
     ]
     
     # Test: Starting at (0,0) with color 0 should find 3 connected blocks
-    # (0,0), (1,0), (0,1)
+    # These are the blocks: (0,0), (0,1), and (1,0) which form a connected group
     visited = set()
     
     def flood_fill(row, col, color):

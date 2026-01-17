@@ -82,7 +82,6 @@ class GameBoard(GridLayout):
             
         # Start new selection
         if not self.selected_blocks:
-            self.selected_blocks = []
             self.find_connected_blocks(block.row, block.col, block.color_index)
             
             # Only allow selection if at least 2 blocks match
@@ -157,7 +156,6 @@ class GameBoard(GridLayout):
                     # Move block to new position
                     old_row = block.row
                     block.row = row_idx
-                    self.blocks[old_row][col] = None
                     self.blocks[row_idx][col] = block
                 row_idx -= 1
             
